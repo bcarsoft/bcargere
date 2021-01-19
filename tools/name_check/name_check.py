@@ -30,7 +30,7 @@ class NameCheck:
                 return False
             tem = False
             for ch in charact:
-                if p == ch:
+                if ord(p) == ch:
                     tem = True
                     break
         else:
