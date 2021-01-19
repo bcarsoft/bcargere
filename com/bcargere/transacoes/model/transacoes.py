@@ -1,5 +1,6 @@
-from ...core.model.absmodel import AbsModel
-from ...banco.model.banco import Banco
+from com.bcargere.core.model.absmodel import AbsModel
+from com.bcargere.data.model.data import Data
+from com.bcargere.banco.model.banco import Banco
 
 
 class Transacoes(AbsModel):
@@ -14,6 +15,7 @@ class Transacoes(AbsModel):
         self._descricao = ''
         self._banco_1 = Banco()
         self._banco_2 = Banco()
+        self._data = Data()
 
     # getters and setters
 
@@ -44,3 +46,10 @@ class Transacoes(AbsModel):
         :return: Banco Instance
         """
         return self._banco_2
+
+    def get_data(self):
+        """
+        Inserir data.
+        :return: Data instance
+        """
+        return self._data

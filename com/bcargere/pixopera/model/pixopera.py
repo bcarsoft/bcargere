@@ -1,5 +1,6 @@
-from ...core.model.absmodel import AbsModel
-from ...pix.model.pix import Pix
+from com.bcargere.core.model.absmodel import AbsModel
+from com.bcargere.data.model.data import Data
+from com.bcargere.pix.model.pix import Pix
 from decimal import Decimal, getcontext
 
 
@@ -15,6 +16,7 @@ class PixOpera(AbsModel):
         self._pix_1 = Pix()
         self._pix_2 = Pix()
         self._dinheiro = Decimal('0.00')
+        self._data = Data()
 
     # getters and setters
 
@@ -60,3 +62,10 @@ class PixOpera(AbsModel):
         :return: Decimal instance
         """
         return self._dinheiro
+
+    def get_data(self):
+        """
+        Inserir data.
+        :return: Data instance
+        """
+        return self._data

@@ -1,4 +1,4 @@
-from ...core.model.absmodel import AbsModel
+from com.bcargere.core.model.absmodel import AbsModel
 
 
 class Pix(AbsModel):

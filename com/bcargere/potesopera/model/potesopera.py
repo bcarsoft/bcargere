@@ -1,5 +1,6 @@
-from ...core.model.absmodel import AbsModel
-from ...potes.model.potes import Potes
+from com.bcargere.core.model.absmodel import AbsModel
+from com.bcargere.data.model.data import Data
+from com.bcargere.potes.model.potes import Potes
 
 
 class PotesOpera(AbsModel):
@@ -15,6 +16,7 @@ class PotesOpera(AbsModel):
         self._descricao = ''
         self._pote_1 = Potes()
         self._pote_2 = Potes()
+        self._data = Data()
 
     # getters and setters
 
@@ -45,3 +47,10 @@ class PotesOpera(AbsModel):
         :return: Potes Instance
         """
         return self._pote_2
+
+    def get_data(self):
+        """
+        Inserir data.
+        :return: Data instance
+        """
+        return self._data

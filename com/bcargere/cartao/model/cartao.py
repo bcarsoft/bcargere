@@ -1,5 +1,5 @@
-from ...core.model.absmodel import AbsModel
-from ...data.model.data import DataCartao
+from com.bcargere.core.model.absmodel import AbsModel
+from com.bcargere.data.model.data import DataCartao
 from decimal import Decimal, getcontext
 
 
@@ -23,6 +23,8 @@ class Cartao(AbsModel):
         self._data_venc = DataCartao()
         self._codigo = ''
         self._limite = Decimal('0.00')
+        self._excedente = Decimal('0.00')
+        self._fatura = Decimal('0.00')
 
     # getters and setters
 
@@ -131,3 +133,33 @@ class Cartao(AbsModel):
         :return: Decimal instance
         """
         return self._limite
+
+    def set_excedente(self, excendente=Decimal('0.00')):
+        """
+        Insere valor a mais (deve ser combinado ao limite).
+        :param excendente: Decimal instance
+        """
+        getcontext().prec = 2
+        self._excedente = excendente
+
+    def get_excedente(self):
+        """
+        Retorna valor a mais (deve ser combinado ao limite)
+        :return: Decimal instance
+        """
+        return self._excedente
+
+    def set_fatura(self, fatura=Decimal('0.00')):
+        """
+        Insere valor a fatura.
+        :param fatura: Decimal instance
+        """
+        getcontext().prec = 2
+        self._fatura = fatura
+
+    def get_fatura(self):
+        """
+        Retorna valor da fatura.
+        :return: Decimal instance.
+        """
+        return self._fatura
