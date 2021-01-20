@@ -16,7 +16,6 @@ class Cartao(AbsModel):
         """Construtor"""
         super().__init__()
         self._bandeira = ''
-        self._conta = 0
         self._tipo = ''
         self._nome_cartao = ''
         self._numero = ''

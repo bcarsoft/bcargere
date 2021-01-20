@@ -64,7 +64,7 @@ class StrControl:
         :param word: str
         :return: str
         """
-        return word.strip(' ')
+        return word.replace(' ', '')
 
     @staticmethod
     def take_character(word='', char=''):
