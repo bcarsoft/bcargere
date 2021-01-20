@@ -1,7 +1,7 @@
+from decimal import Decimal
 from com.bcargere.core.model.absmodel import AbsModel
 from com.bcargere.data.model.data import Data
 from com.bcargere.pix.model.pix import Pix
-from decimal import Decimal, getcontext
 
 
 class PixOpera(AbsModel):
@@ -53,7 +53,6 @@ class PixOpera(AbsModel):
         Insere Valor Monetário
         :param dinheiro: Decimal instance
         """
-        getcontext().prec = 2
         self._dinheiro = dinheiro
 
     def get_dinheiro(self):

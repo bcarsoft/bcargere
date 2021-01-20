@@ -1,3 +1,4 @@
+from decimal import Decimal
 from com.bcargere.core.model.absmodel import AbsModel
 from com.bcargere.data.model.data import Data
 from com.bcargere.banco.model.banco import Banco
@@ -16,6 +17,7 @@ class Transacoes(AbsModel):
         self._banco_1 = Banco()
         self._banco_2 = Banco()
         self._data = Data()
+        self._dinheiro = Decimal('0.00')
 
     # getters and setters
 
@@ -53,3 +55,17 @@ class Transacoes(AbsModel):
         :return: Data instance
         """
         return self._data
+
+    def set_dinheiro(self, dinheiro=Decimal('0.00')):
+        """
+        Insere Valor Monetário
+        :param dinheiro: Decimal instance
+        """
+        self._dinheiro = dinheiro
+
+    def get_dinheiro(self):
+        """
+        Retorna valor da variação
+        :return: Decimal instance
+        """
+        return self._dinheiro

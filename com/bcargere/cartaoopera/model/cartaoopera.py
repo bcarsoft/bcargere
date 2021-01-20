@@ -1,4 +1,4 @@
-from decimal import Decimal, getcontext
+from decimal import Decimal
 from com.bcargere.core.model.absmodel import AbsModel
 from com.bcargere.cartao.model.cartao import Cartao
 from com.bcargere.data.model.data import Data
@@ -62,7 +62,6 @@ class CartaoOpera(AbsModel):
         Insere valor da compra.
         :param valor: Decimal instance
         """
-        getcontext().prec = 2
         self._valor = valor
 
     def get_valor(self):

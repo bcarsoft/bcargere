@@ -1,4 +1,4 @@
-from decimal import Decimal, getcontext
+from decimal import Decimal
 from ...core.model.absmodel import AbsModel
 
 
@@ -50,7 +50,6 @@ class Variacao(AbsModel):
         Insere Valor Monetário
         :param dinheiro: Decimal instance
         """
-        getcontext().prec = 2
         self._dinheiro = dinheiro
 
     def get_dinheiro(self):
