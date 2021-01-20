@@ -12,10 +12,25 @@ class Potes(AbsModel):
     def __init__(self):
         """Construtor"""
         super().__init__()
+        self._nome = ''
         self._descricao = ''
         self._dinheiro = Decimal('0.00')
 
     # getters and setters
+
+    def set_nome(self, nome):
+        """
+        Insira um nome ao pote.
+        :param nome: str
+        """
+        self._nome = nome
+
+    def get_nome(self):
+        """
+        Retorna o nome do pote.
+        :return: str
+        """
+        return self._nome
 
     def set_descricao(self, descricao='Ponte de Dinheiro'):
         """
