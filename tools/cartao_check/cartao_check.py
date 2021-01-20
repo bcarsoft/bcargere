@@ -193,21 +193,3 @@ class CartaoCheck:
             return False
         mn_chk = MoneyCheck()
         return Decimal(mn_chk.decimal_to_str(dinheiro))
-
-
-# 5496 2264 6043 0441
-a = '5496 2264 6043 0441'
-num = [str(lt) for lt in range(10)]
-cha = [chr(lt) for lt in range(45, 46)]
-spc = [chr(lt) for lt in range(32, 33)]
-t = tuple(spc + cha + num)
-a = '5496226460430441'
-b = []
-for i in range(0, 17, 4):
-    b.append(a[i - 4:i])
-else:
-    b.remove('')
-
-print('')
-print(a)
-print(b)
