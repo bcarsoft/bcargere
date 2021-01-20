@@ -14,16 +14,17 @@ class Passw:
 
     # senhas gerais
 
-    def verifica_senha_app(self, senha=''):
+    def verifica_senha_app(self, senha='', size=16):
         """
         Esse metodo verifica a senha para criação
         de conta do aplicativo.
         :param senha: str
+        :param size: int
         :return: bool
         """
         if StrControl.is_none_or_empty(senha):
             return False
-        elif StrControl.str_great(senha, 16):
+        elif StrControl.str_great(senha, size):
             return False
         return self._valid_characters(senha)
 
@@ -51,18 +52,21 @@ class Passw:
 
     # senhas numericas
 
-    def verifica_senha_numerica(self, senha='', size=6):
+    def verifica_senha_numerica(self, senha='', size=6, exact=True):
         """
         Verifica se uma senha numérica pode ser considerada
         válida com base no seu tamanho e se cada elemento
         pode ser convertido em tipo numérico.
         :param senha: str
         :param size: int
+        :param exact: bool
         :return: bool
         """
         if StrControl.is_none_or_empty(senha):
             return False
-        elif not StrControl.str_equals(senha, size):
+        elif not StrControl.str_equals(senha, size) and exact:
+            return False
+        elif StrControl.str_great(senha, size):
             return False
         return self._valid_char_numeric(senha)
 

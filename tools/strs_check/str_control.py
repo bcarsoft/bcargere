@@ -124,7 +124,7 @@ class StrControl:
         :param word: str
         :return: bool
         """
-        if Instan.get_instance(word, str):
+        if not Instan.get_instance(word, str):
             return False
         try:
             int(word)
