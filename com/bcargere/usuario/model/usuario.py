@@ -2,7 +2,7 @@ from com.bcargere.core.model.absmodel import AbsModel
 from com.bcargere.data.model.data import Data
 
 
-class User(AbsModel):
+class Usuario(AbsModel):
     """
         Classe para usuário do aplicativo.
         bcarsoft
