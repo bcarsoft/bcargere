@@ -1,5 +1,5 @@
 from com.bcargere.core.model.absmodel import AbsModel
-from decimal import Decimal, getcontext
+from decimal import Decimal
 
 
 class Potes(AbsModel):
@@ -51,7 +51,6 @@ class Potes(AbsModel):
         Colocar dinheiro no pote
         :param dinheiro: Decimal instance
         """
-        getcontext().prec = 2
         self._dinheiro = dinheiro
 
     def get_dinheiro(self):
