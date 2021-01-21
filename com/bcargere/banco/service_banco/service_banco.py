@@ -1,5 +1,6 @@
 from tools.banco_check.banco_check import BancoCheck
 from com.bcargere.banco.model.banco import Banco
+from tools.instance_check.instance import Instan
 
 
 class ServiceBanco:
@@ -13,25 +14,29 @@ class ServiceBanco:
 
     # criar conta bancaria
 
-    def create_banco(self, banco: Banco):
+    def create_banco(self, banco):
         """
         Registrar nova conta bancaria.
         :param banco: object
         :return: bool
         """
-        if not banco.get_fk() > 0:
+        if not Instan.get_instance(banco, Banco):
+            return False
+        elif not banco.get_fk() > 0:
             return False
         return False if not \
             self._get_ban_check().validar_banco(banco) else True
 
     # atualizar conta bancaria
 
-    def update_banco(self, banco: Banco):
+    def update_banco(self, banco):
         """
         Atualizar conta bancaria.
         :param banco: object
         :return: bool
         """
+        if not Instan.get_instance(banco, Banco):
+            return False
         if not banco.get_id() > 0:
             return False
         elif not banco.get_fk() > 0:
@@ -41,7 +46,7 @@ class ServiceBanco:
 
     # deletar conta bancaria
 
-    def delete_banco(self, banco: Banco):
+    def delete_banco(self, banco):
         """
         Deletar conta bancária.
         :param banco: oject
