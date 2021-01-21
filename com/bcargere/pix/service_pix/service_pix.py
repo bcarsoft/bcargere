@@ -19,7 +19,7 @@ class ServicePix:
 
     # create pix
 
-    def create_pix(self, pix: Pix):
+    def create_pix(self, pix):
         """
         Criar novo pix.
         :param pix: object
@@ -33,7 +33,7 @@ class ServicePix:
 
     # update pix
 
-    def update_pix(self, pix: Pix):
+    def update_pix(self, pix):
         """
         Atualizar pix.
         :param pix: object
@@ -49,7 +49,7 @@ class ServicePix:
 
     # delete pix
 
-    def delete_pix(self, pix: Pix):
+    def delete_pix(self, pix):
         """
         Esse metodo deleta pix pela chave.
         :param pix: object
@@ -75,7 +75,7 @@ class ServicePix:
 
     # update and create
 
-    def _create_update_delete(self, pix: Pix, delete=False):
+    def _create_update_delete(self, pix, delete=False):
         """
         Esse metodo serve para update, delete, e create.
         :param pix: object
