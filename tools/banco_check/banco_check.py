@@ -32,7 +32,7 @@ class BancoCheck:
         elif not self._get_name_check().validar_palavra(banco.get_nome()):
             # nome do banco invalido
             return False
-        elif not self._get_passw().verifica_senha_numerica(str(banco.get_codigo()), 3):
+        elif not self._get_passw().verifica_senha_numerica(banco.get_codigo(), 3):
             # codigo do banco invalido
             return False
         elif not self._get_passw().verifica_senha_numerica(banco.get_num_agencia(), 5) and \
@@ -61,7 +61,8 @@ class BancoCheck:
         elif not self._get_passw().verifica_senha_app(banco.get_senha_2(), size=12):
             # senha secundária inválida
             return False
-        pass
+        else:
+            return True
 
     def _get_passw(self):
         """

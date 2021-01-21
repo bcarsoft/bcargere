@@ -12,7 +12,7 @@ class Banco(AbsModel):
         """Construtor"""
         super().__init__()
         self._nome = ''
-        self._codigo = 0
+        self._codigo = ''
         self._num_agencia = ''
         self._num_conta = ''
         self._tipo = ''
@@ -38,10 +38,10 @@ class Banco(AbsModel):
         """
         return self._nome
 
-    def set_codigo(self, codigo: int):
+    def set_codigo(self, codigo: str):
         """
         Insere Código do Banco
-        :param codigo: int
+        :param codigo: str
         """
         self._codigo = codigo
 
