@@ -17,7 +17,7 @@ class ServicePotes:
 
     # create potes
 
-    def create_potes(self, potes: Potes):
+    def create_potes(self, potes):
         """
         Criando novo pote.
         :param potes: object
@@ -31,7 +31,7 @@ class ServicePotes:
 
     # update potes
 
-    def update_potes(self, potes: Potes):
+    def update_potes(self, potes):
         """
         Atualizando pote.
         :param potes: object
@@ -47,7 +47,7 @@ class ServicePotes:
 
     # delete potes
 
-    def delete_potes(self, potes: Potes):
+    def delete_potes(self, potes):
         """
         Esse metodo deleta um pote.
         :param potes: object.
@@ -72,7 +72,7 @@ class ServicePotes:
 
     # checker create and update
 
-    def _create_and_update(self, potes: Potes):
+    def _create_and_update(self, potes):
         """
         Faz a checagem para aprovar os dados válidas no
         - create, - update.
