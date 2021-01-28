@@ -44,22 +44,6 @@ class Cartao(AbsModel):
         self._bandeira = bandeira
 
     @property
-    def fk(self):
-        """
-        Retorna a chave da conta bancária vinculada
-        :return: int
-        """
-        return super().fk
-
-    @fk.setter
-    def fk(self, fk: int):
-        """
-        É uma chave para a conta bancária vinculada
-        :param fk: int
-        """
-        super().fk = fk
-
-    @property
     def tipo(self):
         """
         Retorna o tipo de operação do cartão

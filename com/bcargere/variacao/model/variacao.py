@@ -18,22 +18,6 @@ class Variacao(AbsModel):
     # getters and setters
 
     @property
-    def fk(self):
-        """
-        Retorna chave para conta bancária
-        :return: int
-        """
-        return super().fk
-
-    @fk.setter
-    def fk(self, fk: int):
-        """
-        Insere chave para conta bancária
-        :param fk: int
-        """
-        super().fk = fk
-
-    @property
     def numero(self):
         """
         Retorna numero da variacao
