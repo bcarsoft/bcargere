@@ -10,7 +10,7 @@ class DataCheck:
     bcarsoft
     """
 
-    def __init__(self, data):
+    def __init__(self):
         pass
 
     def is_data_valida(self, data):
