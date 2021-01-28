@@ -1,4 +1,7 @@
-class AbsModel:
+from abc import ABCMeta
+
+
+class AbsModel(metaclass=ABCMeta):
     """
         Classe abstratra com chave primaria e extrangeira
         - deve ser herdada pelos modelos de base de dados.
@@ -7,6 +10,7 @@ class AbsModel:
 
     def __init__(self):
         """Construtor"""
+        super().__init__()
         self._id = 0
         self._fk = self._id
 
