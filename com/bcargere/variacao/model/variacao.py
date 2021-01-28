@@ -17,44 +17,50 @@ class Variacao(AbsModel):
 
     # getters and setters
 
-    def set_fk(self, fk: int):
-        """
-        Insere chave para conta bancária
-        :param fk: int
-        """
-        super().set_fk(fk)
-
-    def get_fk(self):
+    @property
+    def fk(self):
         """
         Retorna chave para conta bancária
         :return: int
         """
-        return super().get_fk()
+        return super().fk
 
-    def set_numero(self, numero: int):
+    @fk.setter
+    def fk(self, fk: int):
         """
-        Insere numero da variação
-        :param numero: int
+        Insere chave para conta bancária
+        :param fk: int
         """
-        self._numero = numero
+        super().fk = fk
 
-    def get_numero(self):
+    @property
+    def numero(self):
         """
         Retorna numero da variacao
         :return: int
         """
         return self._numero
 
-    def set_dinheiro(self, dinheiro=Decimal('0.00')):
+    @numero.setter
+    def numero(self, numero: int):
         """
-        Insere Valor Monetário
-        :param dinheiro: Decimal instance
+        Insere numero da variação
+        :param numero: int
         """
-        self._dinheiro = dinheiro
+        self._numero = numero
 
-    def get_dinheiro(self):
+    @property
+    def dinheiro(self):
         """
         Retorna valor da variação
         :return: Decimal instance
         """
         return self._dinheiro
+
+    @dinheiro.setter
+    def dinheiro(self, dinheiro=Decimal('0.00')):
+        """
+        Insere Valor Monetário
+        :param dinheiro: Decimal instance
+        """
+        self._dinheiro = dinheiro

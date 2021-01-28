@@ -22,72 +22,82 @@ class CartaoOpera(AbsModel):
 
     # getters and setters
 
-    def get_cartao(self):
+    @property
+    def cartao(self):
         """
         Retorna o cartão.
         :return: Cartao instance
         """
         return self._cartao
 
-    def set_nome(self, nome: str):
-        """
-        Esse metodo insere o nome
-        :param nome: str
-        """
-        self._nome = nome
-
-    def get_nome(self):
+    @property
+    def nome(self):
         """
         Esse metodo retorna o nome
         :return: str
         """
         return self._nome
 
-    def set_descricao(self, descricao: str):
+    @nome.setter
+    def nome(self, nome: str):
         """
-        Insere uma descricao para operação.
-        :param descricao: str
+        Esse metodo insere o nome
+        :param nome: str
         """
-        self._descricao = descricao
+        self._nome = nome
 
-    def get_descricao(self):
+    @property
+    def descricao(self):
         """
         Retorna a descricao da operação.
         :return: str
         """
         return self._descricao
 
-    def set_valor(self, valor=Decimal('0.00')):
+    @descricao.setter
+    def descricao(self, descricao: str):
         """
-        Insere valor da compra.
-        :param valor: Decimal instance
+        Insere uma descricao para operação.
+        :param descricao: str
         """
-        self._valor = valor
+        self._descricao = descricao
 
-    def get_valor(self):
+    @property
+    def valor(self):
         """
         Retorna valor da compra.
         :return: Decimal instance
         """
         return self._valor
 
-    def get_data(self):
+    @valor.setter
+    def valor(self, valor=Decimal('0.00')):
+        """
+        Insere valor da compra.
+        :param valor: Decimal instance
+        """
+        self._valor = valor
+
+    @property
+    def data(self):
         """
         Inserir data.
         :return: Data instance
         """
         return self._data
 
-    def set_done(self, done=False):
-        """
-        Aprova ou não a compra.
-        :param done: bool
-        """
-        self._done = done
-
-    def is_done(self):
+    @property
+    def done(self):
         """
         Retorna se a compra foi ou não aprovada.
         :return: bool
         """
         return self._done
+
+    @done.setter
+    def done(self, done=False):
+        """
+        Aprova ou não a compra.
+        :param done: bool
+        """
+        self._done = done

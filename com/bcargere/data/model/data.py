@@ -12,47 +12,53 @@ class Data:
 
     # getters and setters
 
-    def set_dia(self, dia=1):
-        """
-        Esse metodo insere o dia do mês
-        :param dia: int
-        """
-        self._dia = dia
-
-    def get_dia(self):
+    @property
+    def dia(self):
         """
         Esse metodo retorna o dia
         :return: int
         """
         return self._dia
 
-    def set_mes(self, mes=1):
+    @dia.setter
+    def dia(self, dia=1):
         """
-        Esse metodo insere o mês
-        :param mes: int
+        Esse metodo insere o dia do mês
+        :param dia: int
         """
-        self._mes = mes
+        self._dia = dia
 
-    def get_mes(self):
+    @property
+    def mes(self):
         """
         Esse metodo retorna o mes
         :return: int
         """
         return self._mes
 
-    def set_ano(self, ano=1970):
+    @mes.setter
+    def mes(self, mes=1):
         """
-        Esse metodo insere o ano
-        :param ano: int
+        Esse metodo insere o mês
+        :param mes: int
         """
-        self._ano = ano
+        self._mes = mes
 
-    def get_ano(self):
+    @property
+    def ano(self):
         """
         Esse metodo retorna o ano
         :return: int
         """
         return self._ano
+
+    @ano.setter
+    def ano(self, ano=1970):
+        """
+        Esse metodo insere o ano
+        :param ano: int
+        """
+        self._ano = ano
 
 
 class DataCartao:
@@ -68,30 +74,34 @@ class DataCartao:
 
     # getters and setters
 
-    def set_mes(self, mes=1):
-        """
-        Esse metodo insere o mês
-        :param mes: int
-        """
-        self._mes = mes
-
-    def get_mes(self):
+    @property
+    def mes(self):
         """
         Esse metodo retorna o mes
         :return: int
         """
         return self._mes
 
-    def set_ano(self, ano=1970):
+    @mes.setter
+    def mes(self, mes=1):
         """
-        Esse metodo insere o ano
-        :param ano: int
+        Esse metodo insere o mês
+        :param mes: int
         """
-        self._ano = ano
+        self._mes = mes
 
-    def get_ano(self):
+    @property
+    def ano(self):
         """
         Esse metodo retorna o ano
         :return: int
         """
         return self._ano
+
+    @ano.setter
+    def ano(self, ano=1970):
+        """
+        Esse metodo insere o ano
+        :param ano: int
+        """
+        self._ano = ano

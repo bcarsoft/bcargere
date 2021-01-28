@@ -31,31 +31,23 @@ class ServiceCartaoOpera:
         """
         if not Instan.get_instance(cartaoopera, CartaoOpera):
             return False
-        elif not self._get_name_check() \
-                .validar_palavra(cartaoopera.get_nome()):
+        elif not self._check_n.validar_palavra(cartaoopera.nome):
             return False
-        elif not self._get_name_check() \
-                .validar_palavra(cartaoopera.get_descricao()):
+        elif not self._check_n.validar_palavra(cartaoopera.descricao):
             return False
-        elif not self._get_data_check() \
-                .is_data_valida(cartaoopera.get_data()):
+        elif not self._check_d.is_data_valida(cartaoopera.data):
             return False
-        cartaoopera.set_valor(
-            Decimal(
-                self._get_money_check().str_converter_money(
-                    self._get_money_check().decimal_to_str(
-                        cartaoopera.get_valor()
-                    )
-                )
+        cartaoopera.valor = Decimal(
+            self._check_m.str_converter_money(
+                self._check_m.decimal_to_str(cartaoopera.valor)
             )
         )
-        if not cartaoopera.get_valor():
+        if not cartaoopera.valor:
             return False
-        elif not self._check_cartao(cartaoopera.get_cartao()):
+        elif not self._check_cartao(cartaoopera.cartao):
             return False
-        elif self._get_money_check()\
-                .decimal_greater(dec_1=cartaoopera.get_valor(),
-                                 dec_2=self._limite_atual()):
+        elif self._check_m.decimal_greater(
+                dec_1=cartaoopera.valor, dec_2=self._limite_atual()):
             return False
         else:
             return True
@@ -70,7 +62,7 @@ class ServiceCartaoOpera:
         """
         if not Instan.get_instance(cartaoopera, CartaoOpera):
             return False
-        elif not cartaoopera.get_id() > 0 or not cartaoopera.get_fk() > 0:
+        elif not cartaoopera.id > 0 or not cartaoopera.fk > 0:
             return False
         else:
             return True
@@ -100,34 +92,26 @@ class ServiceCartaoOpera:
         """
         if not Instan.get_instance(cartao, Cartao):
             return False
-        elif not self._get_cartao_check()\
-                .bandeira_checker(cartao.get_bandeira()):
+        elif not self._check_c.bandeira_checker(cartao.bandeira):
             return False
-        elif not self._get_cartao_check().tipo_check(cartao.get_tipo()):
+        elif not self._check_c.tipo_check(cartao.tipo):
             return False
-        elif not self._get_cartao_check().nome_checker(cartao.get_nome_cartao()):
+        elif not self._check_c.nome_checker(cartao.nome_cartao):
             return False
-        elif not self._get_cartao_check()\
-                .str_to_number_cartao(cartao.get_numero()):
+        elif not self._check_c.str_to_number_cartao(cartao.numero):
             return False
-        elif not self._get_cartao_check().data_checker(cartao.get_data_venc()):
+        elif not self._check_c.data_checker(cartao.data_venc):
             return False
-        elif not self._get_cartao_check()\
-                .verifica_monetario(cartao.get_limite()):
+        elif not self._check_c.verifica_monetario(cartao.limite):
             return False
-        elif not self._get_cartao_check()\
-                .verifica_monetario(cartao.get_excedente()):
+        elif not self._check_c.verifica_monetario(cartao.excedente):
             return False
-        elif not self._get_cartao_check().verifica_monetario(cartao.get_fatura()):
+        elif not self._check_c.verifica_monetario(cartao.fatura):
             return False
-        elif not self._get_cartao_check().code_checker(cartao.get_codigo()):
+        elif not self._check_c.code_checker(cartao.codigo):
             return False
         else:
-            cartao.set_numero(
-                self._get_cartao_check().str_to_number_cartao(
-                    cartao.get_numero()
-                )
-            )
+            cartao.numero = self._check_c.str_to_number_cartao(cartao.numero)
             return True
 
     def _limite_atual(self):
@@ -136,32 +120,36 @@ class ServiceCartaoOpera:
         para efeitos de comparação.
         :return: Decimal isntance
         """
-        dec = cartaoopera.get_cartao().get_limite()
-        dec = self._get_money_check().soma_dinheiro(
+        dec = cartaoopera.cartao.limite
+        dec = self._check_m.soma_dinheiro(
             dec_1=dec,
-            dec_2=cartaoopera.get_cartao().get_excedente()
+            dec_2=cartaoopera.cartao.excedente
         )
-        dec = self._get_money_check().subtrai_dinheiro(
+        dec = self._check_m.subtrai_dinheiro(
             dec_1=dec,
-            dec_2=cartaoopera.get_cartao().get_fatura()
+            dec_2=cartaoopera.cartao.fatura
         )
         dec = Decimal(
-            self._get_money_check().str_converter_money(
-                self._get_money_check().decimal_to_str(dec)
+            self._check_m.str_converter_money(
+                self._check_m.decimal_to_str(dec)
             )
         )
         return dec
 
     # getters
 
-    def _get_name_check(self):
+    @property
+    def _check_n(self):
         return self._name_check
 
-    def _get_data_check(self):
+    @property
+    def _check_d(self):
         return self._data_check
 
-    def _get_money_check(self):
+    @property
+    def _check_m(self):
         return self._money_check
 
-    def _get_cartao_check(self):
+    @property
+    def _check_c(self):
         return self._cartao_check

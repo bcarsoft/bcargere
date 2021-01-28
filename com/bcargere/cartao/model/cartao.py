@@ -27,138 +27,154 @@ class Cartao(AbsModel):
 
     # getters and setters
 
-    def set_bandeira(self, bandeira: str):
-        """
-        Empresa que opera o cartão
-        :param bandeira: str
-        """
-        self._bandeira = bandeira
-
-    def get_bandeira(self):
+    @property
+    def bandeira(self):
         """
         Retorna a bandeira do cartão
         :return: str
         """
         return self._bandeira
 
-    def set_fk(self, fk: int):
+    @bandeira.setter
+    def bandeira(self, bandeira: str):
         """
-        É uma chave para a conta bancária vinculada
-        :param fk: int
+        Empresa que opera o cartão
+        :param bandeira: str
         """
-        super().set_fk(fk)
+        self._bandeira = bandeira
 
-    def get_fk(self):
+    @property
+    def fk(self):
         """
         Retorna a chave da conta bancária vinculada
         :return: int
         """
-        return super().get_fk()
+        return super().fk
 
-    def set_tipo(self, tipo: str):
+    @fk.setter
+    def fk(self, fk: int):
         """
-        Insere o tipo de operação do cartão
-        :param tipo: str
+        É uma chave para a conta bancária vinculada
+        :param fk: int
         """
-        self._tipo = tipo
+        super().fk = fk
 
-    def get_tipo(self):
+    @property
+    def tipo(self):
         """
         Retorna o tipo de operação do cartão
         :return: str
         """
         return self._tipo
 
-    def set_nome_cartao(self, nome_cartao: str):
+    @tipo.setter
+    def tipo(self, tipo: str):
         """
-        Insere nome do proprietário do cartão
-        :param nome_cartao: str
+        Insere o tipo de operação do cartão
+        :param tipo: str
         """
-        self._nome_cartao = nome_cartao
+        self._tipo = tipo
 
-    def get_nome_cartao(self):
+    @property
+    def nome_cartao(self):
         """
         Retona nome do proprietário do cartão
         :return: str
         """
         return self._nome_cartao
 
-    def set_numero(self, numero: str):
+    @nome_cartao.setter
+    def nome_cartao(self, nome_cartao: str):
         """
-        Insere numero do cartão
-        :param numero: str
+        Insere nome do proprietário do cartão
+        :param nome_cartao: str
         """
-        self._numero = numero
+        self._nome_cartao = nome_cartao
 
-    def get_numero(self):
+    @property
+    def numero(self):
         """
         Retorna numero do cartão
         :return: str
         """
         return self._numero
 
-    def get_data_venc(self):
+    @numero.setter
+    def numero(self, numero: str):
+        """
+        Insere numero do cartão
+        :param numero: str
+        """
+        self._numero = numero
+
+    @property
+    def data_venc(self):
         """
         Retorna o objeto com a data de vencimento
         :return: DataCartao instance
         """
         return self._data_venc
 
-    def set_codigo(self, codigo: str):
-        """
-        Insere codigo do cartão
-        :param codigo: str
-        """
-        self._codigo = codigo
-
-    def get_codigo(self):
+    @property
+    def codigo(self):
         """
         Retorna número do cartão
         :return: str
         """
         return self._codigo
 
-    def set_limite(self, limite=Decimal('0.00')):
+    @codigo.setter
+    def codigo(self, codigo: str):
         """
-        Insere valor de limite ao cartão
-        :param limite: Decimal instance
+        Insere codigo do cartão
+        :param codigo: str
         """
-        getcontext().prec = 2
-        self._limite = limite
+        self._codigo = codigo
 
-    def get_limite(self):
+    @property
+    def limite(self):
         """
         Retorna o limite do cartão
         :return: Decimal instance
         """
         return self._limite
 
-    def set_excedente(self, excendente=Decimal('0.00')):
+    @limite.setter
+    def limite(self, limite=Decimal('0.00')):
         """
-        Insere valor a mais (deve ser combinado ao limite).
-        :param excendente: Decimal instance
+        Insere valor de limite ao cartão
+        :param limite: Decimal instance
         """
-        getcontext().prec = 2
-        self._excedente = excendente
+        self._limite = limite
 
-    def get_excedente(self):
+    @property
+    def excedente(self):
         """
         Retorna valor a mais (deve ser combinado ao limite)
         :return: Decimal instance
         """
         return self._excedente
 
-    def set_fatura(self, fatura=Decimal('0.00')):
+    @excedente.setter
+    def excedente(self, excedente=Decimal('0.00')):
         """
-        Insere valor a fatura.
-        :param fatura: Decimal instance
+        Insere valor a mais (deve ser combinado ao limite).
+        :param excendente: Decimal instance
         """
-        getcontext().prec = 2
-        self._fatura = fatura
+        self._excedente = excedente
 
-    def get_fatura(self):
+    @property
+    def fatura(self):
         """
         Retorna valor da fatura.
         :return: Decimal instance.
         """
         return self._fatura
+
+    @fatura.setter
+    def fatura(self, fatura=Decimal('0.00')):
+        """
+        Insere valor a fatura.
+        :param fatura: Decimal instance
+        """
+        self._fatura = fatura

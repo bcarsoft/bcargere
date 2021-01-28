@@ -12,30 +12,34 @@ class AbsModel:
 
     # getters and setters
 
-    def set_id(self, id: int):
-        """
-        Insere Chave Primária
-        :param id: int
-        """
-        self._id = id
-
-    def get_id(self):
+    @property
+    def id(self):
         """
         Retorna Chave Primária
         :return: int
         """
         return self._id
 
-    def set_fk(self, fk: int):
+    @id.setter
+    def id(self, id: int):
         """
-        Insere Chave Estrangeira
-        :param fk: int
+        Insere Chave Primária
+        :param id: int
         """
-        self._fk = fk
+        self._id = id
 
-    def get_fk(self):
+    @property
+    def fk(self):
         """
         Retorna Chave Estrangeira
         :return: int
         """
         return self._fk
+
+    @fk.setter
+    def fk(self, fk: int):
+        """
+        Insere Chave Estrangeira
+        :param fk: int
+        """
+        self._fk = fk

@@ -21,21 +21,24 @@ class Usuario(AbsModel):
 
     # getters and setters
 
-    def set_nome(self, nome: str):
-        """
-        Esse metodo insere o nome
-        :param nome: str
-        """
-        self._nome = nome
-
-    def get_nome(self):
+    @property
+    def nome(self):
         """
         Esse metodo retorna o nome
         :return: str
         """
         return self._nome
 
-    def get_data_nasc(self):
+    @nome.setter
+    def nome(self, nome: str):
+        """
+        Esse metodo insere o nome
+        :param nome: str
+        """
+        self._nome = nome
+
+    @property
+    def data_nasc(self):
         """
         Esse metodo retorna a instancia para registro
         de data de nascimento
@@ -43,72 +46,81 @@ class Usuario(AbsModel):
         """
         return self._data_nas
 
-    def set_genero(self, genero: str):
-        """
-        Esse metodo insere o genero
-        :param genero: str
-        """
-        self._genero = genero
-
-    def get_genero(self):
+    @property
+    def genero(self):
         """
         Esse metodo retorna o genero
         :return: str
         """
         return self._genero
 
-    def set_email(self, email: str):
+    @genero.setter
+    def genero(self, genero: str):
+        """
+        Esse metodo insere o genero
+        :param genero: str
+        """
+        self._genero = genero
+
+    @property
+    def email(self):
+        """
+        Esse metodo retorna o email
+        :return: str
+        """
+        return self._email
+    @email.setter
+    def email(self, email: str):
         """
         Esse metodo insere o email
         :param email: str
         """
         self._email = email
 
-    def get_email(self):
-        """
-        Esse metodo retorna o email
-        :return: str
-        """
-        return self._email
-
-    def set_usuario(self, usuario: str):
-        """
-        Esse metodo insere o nome de usuário
-        :param usuario: str
-        """
-        self._usuario = usuario
-
-    def get_usuario(self):
+    @property
+    def usuario(self):
         """
         Esse metodo retorna o nome de usuário
         :return: str
         """
         return self._usuario
 
-    def set_senha(self, senha: str):
+    @usuario.setter
+    def usuario(self, usuario: str):
         """
-        Esse metodo insere a senha de usuário do app
-        :param senha: str
+        Esse metodo insere o nome de usuário
+        :param usuario: str
         """
-        self._senha = senha
+        self._usuario = usuario
 
-    def get_senha(self):
+    @property
+    def senha(self):
         """
         Esse metodo retorna a senha de usuario
         :return: str
         """
         return self._senha
 
-    def set_telefone(self, telefone: str):
+    @senha.setter
+    def senha(self, senha: str):
         """
-        Esse metódo insere o telefone
-        :param telefone: str
+        Esse metodo insere a senha de usuário do app
+        :param senha: str
         """
-        self._telefone = telefone
+        self._senha = senha
 
-    def get_telefone(self):
+    @property
+    def telefone(self):
         """
         Esse metodo retorna o telefone
         :return: str
         """
         return self._telefone
+
+    @telefone.setter
+    def telefone(self, telefone: str):
+        """
+        Esse metódo insere o telefone
+        :param telefone: str
+        """
+        self._telefone = telefone

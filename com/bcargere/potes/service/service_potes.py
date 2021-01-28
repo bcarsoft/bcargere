@@ -25,7 +25,7 @@ class ServicePotes:
         """
         if not Instan.get_instance(potes, Potes):
             return False
-        if not potes.get_fk() > 0:
+        if not potes.fk > 0:
             return False
         return True if self._create_and_update(potes) else False
 
@@ -39,9 +39,9 @@ class ServicePotes:
         """
         if not Instan.get_instance(potes, Potes):
             return False
-        elif not potes.get_id() > 0:
+        elif not potes.id > 0:
             return False
-        elif not potes.get_fk() > 0:
+        elif not potes.fk > 0:
             return False
         return True if self._create_and_update(potes) else False
 
@@ -55,7 +55,7 @@ class ServicePotes:
         """
         if not Instan.get_instance(potes, Potes):
             return False
-        return False if not potes.get_id() > 0 else True
+        return False if not potes.id > 0 else True
 
     # find potes
 
@@ -76,28 +76,26 @@ class ServicePotes:
         """
         Faz a checagem para aprovar os dados válidas no
         - create, - update.
-        :param postes: object
+        :param potes: object
         :return: bool
         """
-        if not self._get_name().validar_palavra(potes.get_nome()):
+        if not self._check_n.validar_palavra(potes.nome):
             return False
-        elif self._get_name().validar_palavra(potes.get_descricao()):
+        elif self._check_n.validar_palavra(potes.descricao):
             return False
-        potes.set_dinheiro(
-            Decimal(
-                self._get_money().str_converter_money(
-                    self._get_money().decimal_to_str(
-                        potes.get_dinheiro()
-                    )
-                )
+        potes.set_dinheiro = Decimal(
+            self._check_m.str_converter_money(
+                self._check_m.decimal_to_str(potes.dinheiro)
             )
         )
         return True
 
     # getters
 
-    def _get_name(self):
+    @property
+    def _check_n(self):
         return self._name
 
-    def _get_money(self):
+    @property
+    def _check_m(self):
         return self._money

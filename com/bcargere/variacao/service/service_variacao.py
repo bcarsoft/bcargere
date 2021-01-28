@@ -20,7 +20,7 @@ class ServiceVariacao:
         :param variacao: object
         :return: bool
         """
-        if not self._get_var_check().validar_variacao(variacao):
+        if not self._check_vc.validar_variacao(variacao):
             return False
         else:
             return True
@@ -33,9 +33,9 @@ class ServiceVariacao:
         :param variacao: object
         :return: bool
         """
-        if not self._get_var_check().validar_variacao(variacao):
+        if not self._check_vc.validar_variacao(variacao):
             return False
-        elif not variacao.get_id() > 0:
+        elif not variacao.id > 0:
             return False
         else:
             return True
@@ -65,12 +65,13 @@ class ServiceVariacao:
         """
         if not Instan.get_instance(variacao, Variacao):
             return False
-        elif not variacao.get_id() > 0:
+        elif not variacao.id > 0:
             return False
         else:
             return True
 
     # getter method
 
-    def _get_var_check(self):
+    @property
+    def _check_vc(self):
         return self._var_check

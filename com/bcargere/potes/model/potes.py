@@ -18,44 +18,50 @@ class Potes(AbsModel):
 
     # getters and setters
 
-    def set_nome(self, nome):
-        """
-        Insira um nome ao pote.
-        :param nome: str
-        """
-        self._nome = nome
-
-    def get_nome(self):
+    @property
+    def nome(self):
         """
         Retorna o nome do pote.
         :return: str
         """
         return self._nome
 
-    def set_descricao(self, descricao='Ponte de Dinheiro'):
+    @nome.setter
+    def nome(self, nome):
         """
-        Insira uma descrição para o pote
-        :param descricao: str
+        Insira um nome ao pote.
+        :param nome: str
         """
-        self._descricao = descricao
+        self._nome = nome
 
-    def get_descricao(self):
+    @property
+    def descricao(self):
         """
         Retorna a Descricao
         :return: str
         """
         return self._descricao
 
-    def set_dinheiro(self, dinheiro=Decimal('0.00')):
+    @descricao.setter
+    def descricao(self, descricao='Ponte de Dinheiro'):
         """
-        Colocar dinheiro no pote
-        :param dinheiro: Decimal instance
+        Insira uma descrição para o pote
+        :param descricao: str
         """
-        self._dinheiro = dinheiro
+        self._descricao = descricao
 
-    def get_dinheiro(self):
+    @property
+    def dinheiro(self):
         """
         Retornar o valor monetário no pote.
         :return: Decimal instance
         """
         return self._dinheiro
+
+    @dinheiro.setter
+    def dinheiro(self, dinheiro=Decimal('0.00')):
+        """
+        Colocar dinheiro no pote
+        :param dinheiro: Decimal instance
+        """
+        self._dinheiro = dinheiro

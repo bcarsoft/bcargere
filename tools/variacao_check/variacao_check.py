@@ -23,11 +23,11 @@ class VariacaoCheck:
         """
         if Instan.get_instance(variacao, Variacao):
             return False
-        elif variacao.get_fk() < 1:
+        elif variacao.fk < 1:
             return False
-        elif variacao.get_numero() < 1:
+        elif variacao.numero < 1:
             return False
-        elif variacao.get_dinheiro() < 0 and not atualiza:
+        elif variacao.dinheiro < 0 and not atualiza:
             return False
         else:
             return True

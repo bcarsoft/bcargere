@@ -15,7 +15,7 @@ class BancoCheck:
     """
 
     def __init__(self):
-        self._passw = Passw()
+        self._passw_ = Passw()
         self._name = NameCheck()
         self._data = DataCheck()
         self._gender = GenderCheck()
@@ -29,64 +29,68 @@ class BancoCheck:
         if not Instan.get_instance(banco, Banco):
             # se a instancia está incorreta
             return False
-        elif not self._get_name_check().validar_palavra(banco.get_nome()):
+        elif not self._check_n.validar_palavra(banco.get_nome()):
             # nome do banco invalido
             return False
-        elif not self._get_passw().verifica_senha_numerica(banco.get_codigo(), 3):
+        elif not self._passw.verifica_senha_numerica(banco.get_codigo(), 3):
             # codigo do banco invalido
             return False
-        elif not self._get_passw().verifica_senha_numerica(banco.get_num_agencia(), 5) and \
-                not self._get_passw().verifica_senha_numerica(banco.get_num_agencia(), 6):
+        elif not self._passw.verifica_senha_numerica(banco.get_num_agencia(), 5) and \
+                not self._passw.verifica_senha_numerica(banco.get_num_agencia(), 6):
             # número de agência inválido
             return False
-        elif not self._get_passw().verifica_senha_numerica(banco.get_num_conta(), 9, exact=False):
+        elif not self._passw.verifica_senha_numerica(banco.get_num_conta(), 9, exact=False):
             # numero da conta invalido
             return False
-        elif not self._is_tipo_valido(banco.get_tipo()):
+        elif not self._is_tipo_valido(banco.tipo):
             # tipo de conta inválido
             return False
-        elif not self._get_name_check().validar_palavra(banco.get_titular()):
+        elif not self._check_n.validar_palavra(banco.titular):
             # titular de conta invalido
             return False
-        elif not self._get_gender_check().gender_valid(banco.get_genero()):
+        elif not self._check_g.gender_valid(banco.genero):
             # sexo invalido
             return False
-        elif not self._get_data_check().is_data_valida(banco.get_data_nas()):
+        elif not self._check_d.is_data_valida(banco.data_nas):
             # data de nascimento inválido
             return False
-        elif not self._get_passw().verifica_senha_numerica(banco.get_senha_1(),
-                                                           size=8, exact=False):
+        elif not self._passw.verifica_senha_numerica\
+                    (banco.get_senha_1(), size=8, exact=False):
             # senha principal invalido
             return False
-        elif not self._get_passw().verifica_senha_app(banco.get_senha_2(), size=12):
+        elif not self._passw.verifica_senha_app(banco.get_senha_2(), size=12):
             # senha secundária inválida
             return False
         else:
             return True
 
-    def _get_passw(self):
+    @property
+    def _passw(self):
         """
         Retorna checagem de senha e numeros de
         agência e conta.
         :return: Passw instance
         """
-        return self._passw
+        return self._passw_
 
-    def _get_name_check(self):
+    @property
+    def _check_n(self):
         """
         Retorna objeto para checar nome.
         :return: NameCheck instance
         """
         return self._name
 
-    def _get_data_check(self):
+    @property
+    def _check_d(self):
         """
         Retorna objeto para checar data.
         :return: DataCheck instance
         """
         return self._data
 
-    def _get_gender_check(self):
+    @property
+    def _check_g(self):
         """
         Retona objeto para checar sexo.
         :return: GenderCheck intance.
@@ -104,5 +108,5 @@ class BancoCheck:
         :return: bool
         """
         tipo = StrControl.make_lowcase(tipo)
-        contas = ('conta pagamento', 'conta corrente', 'conta poupança', )
-        return tipo in contas
+        contas = ('pagamento', 'corrente', 'poupança')
+        return tipo in tuple(f'conta {cnt}' for cnt in contas)

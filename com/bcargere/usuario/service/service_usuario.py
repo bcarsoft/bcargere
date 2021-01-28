@@ -27,7 +27,7 @@ class ServiceUsuario:
 
     # criando novo usuário
 
-    def crete_usuario(self, user: Usuario):
+    def crete_usuario(self, user):
         """
         Metodo para testar novo usuário.
         :param user: object
@@ -45,14 +45,14 @@ class ServiceUsuario:
         """
         if not self._get_done_create_update(user):
             return False
-        elif user.get_id() < 1:
+        elif user.id < 1:
             return False
         else:
             return True
 
     # deletando usuário
 
-    def delete_usuario(self, user: Usuario):
+    def delete_usuario(self, user):
         """
         Esse metodo testa a chave para deleção de usuário.
         :param user: object
@@ -60,7 +60,7 @@ class ServiceUsuario:
         """
         if not Instan.get_instance(user, Usuario):
             return False
-        elif not user.get_id() > 0:
+        elif not user.id > 0:
             return False
         else:
             return True
@@ -90,42 +90,49 @@ class ServiceUsuario:
         """
         if not Instan.get_instance(user, Usuario):
             return False
-        elif not self._get_name().validar_palavra(user.get_nome()):
+        elif not self._check_n.validar_palavra(user.nome):
             return False
-        elif not self._get_data().is_data_valida(user.get_data_nasc()):
+        elif not self._check_d.is_data_valida(user.data_nasc):
             return False
-        elif not self._get_gender().gender_valid(user.get_genero()):
+        elif not self._check_g.gender_valid(user.genero):
             return False
-        elif not self._get_email().email_is_valid(user.get_email()):
+        elif not self._check_e.email_is_valid(user.email):
             return False
-        elif not self._get_user().validar_nome_usuario(user.get_usuario()):
+        elif not self._check_u.validar_nome_usuario(user.usuario):
             return False
-        elif not self._get_pass().verifica_senha_app(user.get_senha()):
+        elif not self._check_p.verifica_senha_app(user.senha):
             return False
-        elif not self._get_mobile().mobile_valid(user.get_telefone()):
+        elif not self._check_m.mobile_valid(user.telefone):
             return False
         else:
             return True
 
     # getters
 
-    def _get_name(self):
+    @property
+    def _check_n(self):
         return self._name
 
-    def _get_data(self):
+    @property
+    def _check_d(self):
         return self._data
 
-    def _get_gender(self):
+    @property
+    def _check_g(self):
         return self._gender
 
-    def _get_email(self):
+    @property
+    def _check_e(self):
         return self._email
 
-    def _get_user(self):
+    @property
+    def _check_u(self):
         return self._user
 
-    def _get_pass(self):
+    @property
+    def _check_p(self):
         return self._pass
 
-    def _get_mobile(self):
+    @property
+    def _check_m(self):
         return self._mobile

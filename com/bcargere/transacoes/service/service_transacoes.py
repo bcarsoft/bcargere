@@ -30,20 +30,18 @@ class ServiceTransacoes:
         """
         if not Instan.get_instance(transacao, Transacoes):
             return False
-        elif not self._get_ban_check().validar_banco(transacao.get_banco_1()):
+        elif not self._check_b.validar_banco(transacao.banco_1):
             return False
-        elif not self._get_ban_check().validar_banco(transacao.get_banco_2()):
+        elif not self._check_b.validar_banco(transacao.banco_2):
             return False
-        elif not self._get_name_check().validar_palavra(transacao.get_descricao()):
+        elif not self._check_n.validar_palavra(transacao.descricao):
             return False
-        elif not self._get_data_check().is_data_valida(transacao.get_data()):
+        elif not self._check_d.is_data_valida(transacao.data):
             return False
-        transacao.set_dinheiro(
-            Decimal(
-                self._get_money_check().str_converter_money(
-                    self._get_money_check().decimal_to_str(
-                        transacao.get_dinheiro()
-                    )
+        transacao.dinheiro = Decimal(
+            self._check_m.str_converter_money(
+                self._check_m.decimal_to_str(
+                    transacao.dinheiro
                 )
             )
         )
@@ -60,7 +58,7 @@ class ServiceTransacoes:
         """
         if not Instan.get_instance(transacao, Transacoes):
             return False
-        elif not transacao.get_id() > 0 or not transacao.get_fk() > 0:
+        elif not transacao.id > 0 or not transacao.fk > 0:
             return False
         else:
             return True
@@ -82,14 +80,18 @@ class ServiceTransacoes:
 
     # getters
 
-    def _get_ban_check(self):
+    @property
+    def _check_b(self):
         return self._ban_check
 
-    def _get_name_check(self):
+    @property
+    def _check_n(self):
         return self._name_check
 
-    def _get_data_check(self):
+    @property
+    def _check_d(self):
         return self._data_check
 
-    def _get_money_check(self):
+    @property
+    def _check_m(self):
         return self._money_check

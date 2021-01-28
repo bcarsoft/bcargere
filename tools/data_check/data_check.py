@@ -33,20 +33,20 @@ class DataCheck:
         :param data: Data instance
         :return: bool
         """
-        if not self._valida_ano_atual(data.get_ano()):
+        if not self._valida_ano_atual(data.ano):
             return False
-        elif not self._valida_mes(data.get_mes()):
+        elif not self._valida_mes(data.mes):
             return False
-        elif not self._valida_dia(data.get_dia()):
+        elif not self._valida_dia(data.dia):
             return False
-        elif self._ano_bissexto(data.get_ano()) and data.get_mes() == 2:
-            return 0 < data.get_dia() < 30
-        elif data.get_mes() == 2:
-            return 0 < data.get_dia() < 29
-        elif mes_com_31_switch(data.get_mes()) is None:
+        elif self._ano_bissexto(data.ano) and data.mes == 2:
+            return 0 < data.dia < 30
+        elif data.mes == 2:
+            return 0 < data.dia < 29
+        elif mes_com_31_switch(data.mes) is None:
             return False
-        return 0 < data.get_dia() < 32 if mes_com_31_switch(data.get_mes()) \
-            else 0 < data.get_dia() < 31
+        return 0 < data.dia < 32 if mes_com_31_switch(data.mes) \
+            else 0 < data.dia < 31
 
     # data cartão
 
@@ -56,7 +56,7 @@ class DataCheck:
         :param data: DataCartao
         :return: bool
         """
-        return self._valida_mes(data.get_mes()) and self._valida_ano(data.get_ano())
+        return self._valida_mes(data.mes) and self._valida_ano(data.ano)
 
     # metodos auxiliares
 

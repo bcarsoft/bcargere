@@ -22,10 +22,10 @@ class ServiceBanco:
         """
         if not Instan.get_instance(banco, Banco):
             return False
-        elif not banco.get_fk() > 0:
+        elif not banco.fk > 0:
             return False
         return False if not \
-            self._get_ban_check().validar_banco(banco) else True
+            self._check_b.validar_banco(banco) else True
 
     # atualizar conta bancaria
 
@@ -37,12 +37,12 @@ class ServiceBanco:
         """
         if not Instan.get_instance(banco, Banco):
             return False
-        if not banco.get_id() > 0:
+        if not banco.id > 0:
             return False
-        elif not banco.get_fk() > 0:
+        elif not banco.fk > 0:
             return False
         return False if not \
-            self._get_ban_check().validar_banco(banco) else True
+            self._check_b.validar_banco(banco) else True
 
     # deletar conta bancaria
 
@@ -52,7 +52,7 @@ class ServiceBanco:
         :param banco: oject
         :return: bool
         """
-        if not banco.get_id() > 0 or not banco.get_fk() > 0:
+        if not banco.id > 0 or not banco.fk > 0:
             return False
         else:
             return True
@@ -74,5 +74,6 @@ class ServiceBanco:
 
     # metodo getter
 
-    def _get_ban_check(self):
+    @property
+    def _check_b(self):
         return self._ban_check

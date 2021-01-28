@@ -24,135 +24,154 @@ class Banco(AbsModel):
 
     # getters and setters
 
-    def set_nome(self, nome: str):
-        """
-        Insere Nome do Banco
-        :param nome: str
-        """
-        self._nome = nome
-
-    def get_nome(self):
+    @property
+    def nome(self):
         """
         Retorna Nome do Banco
         :return: str
         """
         return self._nome
 
-    def set_codigo(self, codigo: str):
+    @nome.setter
+    def nome(self, nome: str):
         """
-        Insere Código do Banco
-        :param codigo: str
+        Insere Nome do Banco
+        :param name: str
         """
-        self._codigo = codigo
+        self._nome = nome
 
-    def get_codigo(self):
+    @property
+    def codigo(self):
         """
         Retorna Codigo do Banco
         :return: str
         """
         return self._codigo
 
-    def set_num_agencia(self, num_agencia: str):
+    @codigo.setter
+    def codigo(self, codigo: str):
         """
-        Insere Número de Agência
-        :param num_agencia: str
+        Insere Código do Banco
+        :param codigo: str
         """
-        self._num_agencia = num_agencia
+        self._codigo = codigo
 
-    def get_num_agencia(self):
+    @property
+    def num_agencia(self):
         """
         Retorna Número de Agência
         :return: str
         """
         return self._num_agencia
 
-    def set_num_conta(self, num_conta: str):
+    @num_agencia.setter
+    def num_agencia(self, num_agencia: str):
         """
-        Insere Número de Conta
-        :param num_conta: str
+        Insere Número de Agência
+        :param num_agencia: str
         """
-        self._num_conta = num_conta
+        self._num_agencia = num_agencia
 
-    def get_num_conta(self):
+    @property
+    def num_conta(self):
         """
         Retorna Número de Conta
         :return: str
         """
         return self._num_conta
 
-    def set_tipo(self, tipo: str):
+    @num_conta.setter
+    def num_conta(self, num_conta: str):
         """
-        Insere Tipo de conta
-        :param tipo: str
+        Insere Número de Conta
+        :param num_conta: str
         """
-        self._tipo = tipo
+        self._num_conta = num_conta
 
-    def get_tipo(self):
+    @property
+    def tipo(self):
         """
         Retorna Tipo de conta
         :return: str
         """
         return self._tipo
 
-    def set_titular(self, titular: str):
+    @tipo.setter
+    def tipo(self, tipo: str):
         """
-        Insere Nome do titular da conta
-        :param titular: str
+        Insere Tipo de conta
+        :param tipo: str
         """
-        self._titular = titular
+        self._tipo = tipo
 
-    def get_titular(self):
+    @property
+    def titular(self):
         """
         Retorna Nome do titular da conta
         :return: str
         """
         return self._titular
 
-    def set_genero(self, genero: str):
+    @titular.setter
+    def titular(self, titular: str):
         """
-        Insere Genero do titular da conta
-        :param genero: str
+        Insere Nome do titular da conta
+        :param titular: str
         """
-        self._genero = genero
+        self._titular = titular
 
-    def get_genero(self):
+    @property
+    def genero(self):
         """
         Retorna Genero do titular da conta
         :return: str
         """
         return self._genero
 
-    def get_data_nas(self):
+    @genero.setter
+    def genero(self, genero: str):
+        """
+        Insere Genero do titular da conta
+        :param genero: str
+        """
+        self._genero = genero
+
+    @property
+    def data_nas(self):
         """
         Retorna objeto para registro de data
         :return: Data instance
         """
         return self._data_nas
 
-    def set_senha_1(self, senha1: str):
-        """
-        Insere Senha 1 (mais curta)
-        :param senha1: str
-        """
-        self._senha1 = senha1
-
-    def get_senha_1(self):
+    @property
+    def senha_1(self):
         """
         Retorna Senha 1 (mais curta)
         :return: str
         """
         return self._senha1
 
-    def set_senha_2(self, senha2: str):
+    @senha_1.setter
+    def senha_1(self, senha_1: str):
         """
-        Insere Senha 2 (mais longa)
-        :param senha2: str
+        Insere Senha 1 (mais curta)
+        :param senha_1: str
         """
-        self._senha2 = senha2
+        self._senha1 = senha_1
 
-    def get_senha_2(self):
+    @property
+    def senha_2(self):
         """
-        Retorna Senha 2 (mais longo)
+        Retorna Senha 2 (mais longa)
         :return: str
         """
         return self._senha2
+
+    @senha_2.setter
+    def senha_2(self, senha_2: str):
+        """
+        Insere Senha 2 (mais longa)
+        :param senha_2: str
+        """
+        self._senha2 = senha_2

@@ -23,7 +23,7 @@ class ServiceCartao:
         """
         if not Instan.get_instance(cartao, Cartao):
             return False
-        elif not cartao.get_fk() > 0:
+        elif not cartao.fk > 0:
             return False
         return False if not self._check_create_update(cartao) else True
 
@@ -37,9 +37,9 @@ class ServiceCartao:
         """
         if not Instan.get_instance(cartao, Cartao):
             return False
-        elif not cartao.get_id() > 0:
+        elif not cartao.id > 0:
             return False
-        elif not cartao.get_fk() > 0:
+        elif not cartao.fk > 0:
             return False
         return False if not self._check_create_update(cartao) else True
 
@@ -53,7 +53,7 @@ class ServiceCartao:
         """
         if not Instan.get_instance(cartao, Cartao):
             return False
-        return False if not cartao.get_id() > 0 else True
+        return False if not cartao.id > 0 else True
 
     # busca cartao
 
@@ -70,34 +70,35 @@ class ServiceCartao:
 
     # fazendo aprovação create / update
 
-    def _check_create_update(self, cartao: Cartao):
+    def _check_create_update(self, cartao):
         """
         Esse metodo faz a checagem de dados para criar e atualizar.
         :param cartao: object
         :return: bool
         """
-        if not self._get_card().bandeira_checker(cartao.get_bandeira()):
+        if not self._card_.bandeira_checker(cartao.bandeira):
             return False
-        elif not self._get_card().tipo_check(cartao.get_tipo()):
+        elif not self._card_.tipo_check(cartao.tipo):
             return False
-        elif not self._get_card().nome_checker(cartao.get_nome_cartao()):
+        elif not self._card_.nome_checker(cartao.nome_cartao):
             return False
-        elif not self._get_card().str_to_number_cartao(cartao.get_numero()):
+        elif not self._card_.str_to_number_cartao(cartao.numero):
             return False
-        elif not self._get_card().data_checker(cartao.get_data_venc()):
+        elif not self._card_.data_checker(cartao.data_venc):
             return False
-        elif not self._get_card().code_checker(cartao.get_codigo()):
+        elif not self._card_.code_checker(cartao.codigo):
             return False
-        elif not self._get_card().verifica_monetario(cartao.get_limite()):
+        elif not self._card_.verifica_monetario(cartao.limite):
             return False
-        elif not self._get_card().verifica_monetario(cartao.get_excedente()):
+        elif not self._card_.verifica_monetario(cartao.excedente):
             return False
-        elif not self._get_card().verifica_monetario(cartao.get_fatura()):
+        elif not self._card_.verifica_monetario(cartao.fatura):
             return False
         else:
             return True
 
     # metodo getter
 
-    def _get_card(self):
+    @property
+    def _card_(self):
         return self._card

@@ -20,7 +20,7 @@ class ServicePixOpera:
 
     # create part
 
-    def create_pixopera(self, pixopera):
+    def create_pixopera(self, pixopera: PixOpera):
         """
         Esse metodo verifica dados para registro de
         nova operação pix.
@@ -29,22 +29,18 @@ class ServicePixOpera:
         """
         if not Instan.get_instance(pixopera, PixOpera):
             return False
-        elif not self._verifica_pix(pixopera.get_pix_1()):
+        elif not self._verifica_pix(pixopera.pix_1):
             return False
-        elif not self._verifica_pix(pixopera.get_pix_2()):
+        elif not self._verifica_pix(pixopera.pix_2):
             return False
-        pixopera.set_dinheiro(
-            Decimal(
-                self._get_money_check().str_converter_money(
-                    self._get_money_check()
-                        .decimal_to_str(pixopera.get_dinheiro())
-                )
+        pixopera.dinheiro = Decimal(
+            self._check_m.str_converter_money(
+                self._check_m.decimal_to_str(pixopera.dinheiro)
             )
         )
-        if not pixopera.get_dinheiro():
+        if not pixopera.dinheiro:
             return False
-        return False if not self._get_data_check()\
-            .is_data_valida(pixopera.get_data()) else True
+        return False if not self._check_d.is_data_valida(pixopera.data) else True
 
     # delete part
 
@@ -56,7 +52,7 @@ class ServicePixOpera:
         """
         if not Instan.get_instance(pixopera, PixOpera):
             return False
-        elif not pixopera.get_id() > 0 or not pixopera.get_fk() > 0:
+        elif not pixopera.id > 0 or not pixopera.fk > 0:
             return False
         else:
             return True
@@ -87,20 +83,23 @@ class ServicePixOpera:
         """
         if not Instan.get_instance(pix, Pix):
             return False
-        elif not self._get_name_check().validar_palavra(pix.get_nome()):
+        elif not self._check_n.validar_palavra(pix.nome):
             return False
-        elif StrControl.is_none_or_empty(pix.get_chave()):
+        elif StrControl.is_none_or_empty(pix.chave):
             return False
         else:
             return True
 
     # getters
 
-    def _get_data_check(self):
+    @property
+    def _check_d(self):
         return self._data_check
 
-    def _get_money_check(self):
+    @property
+    def _check_m(self):
         return self._money_check
 
-    def _get_name_check(self):
+    @property
+    def _check_n(self):
         return self._name_check

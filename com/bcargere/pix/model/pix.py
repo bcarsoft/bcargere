@@ -14,44 +14,50 @@ class Pix(AbsModel):
 
     # getters and setters
 
-    def set_fk(self, fk: int):
-        """
-        Insere a chave da conta de banco vinculada
-        :param fk: int
-        """
-        super().set_fk(fk)
-
-    def get_fk(self):
+    @property
+    def fk(self):
         """
         Retorna a chave da conta de banco vinculada
         :return: int
         """
-        return super().get_fk()
+        return super().fk
 
-    def set_chave(self, chave: str):
+    @fk.setter
+    def fk(self, fk: int):
         """
-        Insere Chave Pix.
-        :param chave: str
+        Insere a chave da conta de banco vinculada
+        :param fk: int
         """
-        self._chave = chave
+        super().fk = fk
 
-    def get_chave(self):
+    @property
+    def chave(self):
         """
         Retorna Chave Pix
         :return: str
         """
         return self._chave
 
-    def set_nome(self, nome: str):
+    @chave.setter
+    def chave(self, chave: str):
         """
-        Insere nome da Chave.
-        :param nome: str
+        Insere Chave Pix.
+        :param chave: str
         """
-        self._nome = nome
+        self._chave = chave
 
-    def get_nome(self):
+    @property
+    def nome(self):
         """
         Retorna nome da Chave.
         :return: str
         """
         return self._nome
+
+    @nome.setter
+    def nome(self, nome: str):
+        """
+        Insere nome da Chave.
+        :param nome: str
+        """
+        self._nome = nome

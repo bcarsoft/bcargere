@@ -20,49 +20,56 @@ class PixOpera(AbsModel):
 
     # getters and setters
 
-    def set_descricao(self, descricao: str):
-        """
-        Insere uma descricao para operação.
-        :param descricao: str
-        """
-        self._descricao = descricao
-
-    def get_descricao(self):
+    @property
+    def descricao(self):
         """
         Retorna a descricao da operação.
         :return: str
         """
         return self._descricao
 
-    def get_pix_1(self):
+    @descricao.setter
+    def descricao(self, descricao: str):
+        """
+        Insere uma descricao para operação.
+        :param descricao: str
+        """
+        self._descricao = descricao
+
+    @property
+    def pix_1(self):
         """
         Remetentente
         :return: Banco Instance
         """
         return self._pix_1
 
-    def get_pix_2(self):
+    @property
+    def pix_2(self):
         """
         Beneficiado
         :return: Banco Instance
         """
         return self._pix_2
 
-    def set_dinheiro(self, dinheiro=Decimal('0.00')):
-        """
-        Insere Valor Monetário
-        :param dinheiro: Decimal instance
-        """
-        self._dinheiro = dinheiro
-
-    def get_dinheiro(self):
+    @property
+    def dinheiro(self):
         """
         Retorna valor da variação
         :return: Decimal instance
         """
         return self._dinheiro
 
-    def get_data(self):
+    @dinheiro.setter
+    def dinheiro(self, dinheiro=Decimal('0.00')):
+        """
+        Insere Valor Monetário
+        :param dinheiro: Decimal instance
+        """
+        self._dinheiro = dinheiro
+
+    @property
+    def data(self):
         """
         Inserir data.
         :return: Data instance

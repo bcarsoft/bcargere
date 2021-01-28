@@ -22,51 +22,58 @@ class PotesOpera(AbsModel):
 
     # getters and setters
 
-    def set_descricao(self, descricao: str):
-        """
-        Insere uma descricao para operação.
-        :param descricao: str
-        """
-        self._descricao = descricao
-
-    def get_descricao(self):
+    @property
+    def descricao(self):
         """
         Retorna a descricao da operação.
         :return: str
         """
         return self._descricao
 
-    def get_pote_1(self):
+    @descricao.setter
+    def descricao(self, descricao: str):
+        """
+        Insere uma descricao para operação.
+        :param descricao: str
+        """
+        self._descricao = descricao
+
+    @property
+    def pote_1(self):
         """
         Remetentente
         :return: Potes Instance
         """
         return self._pote_1
 
-    def get_pote_2(self):
+    @property
+    def pote_2(self):
         """
         Beneficiado
         :return: Potes Instance
         """
         return self._pote_2
 
-    def get_data(self):
+    @property
+    def data(self):
         """
         Inserir data.
         :return: Data instance
         """
         return self._data
 
-    def set_dinheiro(self, dinheiro=Decimal('0.00')):
-        """
-        Insere Valor Monetário
-        :param dinheiro: Decimal instance
-        """
-        self._dinheiro = dinheiro
-
-    def get_dinheiro(self):
+    @property
+    def dinheiro(self):
         """
         Retorna valor da variação
         :return: Decimal instance
         """
         return self._dinheiro
+
+    @dinheiro.setter
+    def dinheiro(self, dinheiro=Decimal('0.00')):
+        """
+        Insere Valor Monetário
+        :param dinheiro: Decimal instance
+        """
+        self._dinheiro = dinheiro

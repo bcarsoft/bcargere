@@ -15,7 +15,7 @@ class ServicePix:
     """
 
     def __init__(self):
-        self._name = NameCheck()
+        self._name_ = NameCheck()
 
     # create pix
 
@@ -27,7 +27,7 @@ class ServicePix:
         """
         if not Instan.get_instance(pix, Pix):
             return False
-        elif not pix.get_fk() > 0:
+        elif not pix.fk > 0:
             return False
         return True if self._create_update_delete(pix) else False
 
@@ -41,9 +41,9 @@ class ServicePix:
         """
         if not Instan.get_instance(pix, Pix):
             return False
-        elif not pix.get_id() > 0:
+        elif not pix.id > 0:
             return False
-        elif not pix.get_fk() > 0:
+        elif not pix.fk > 0:
             return False
         return True if self._create_update_delete(pix) else False
 
@@ -83,12 +83,17 @@ class ServicePix:
         :return: bool
         """
         if delete:
-            return pix.get_id() > 0
-        elif not self._get_name().validar_palavra(pix.get_nome()):
+            return pix.id > 0
+        elif not self._name.validar_palavra(pix.nome):
             return False
-        return False if StrControl.is_none_or_empty(pix.get_chave()) else True
+        return False if StrControl.is_none_or_empty(pix.chave) else True
 
     # getter
 
-    def _get_name(self):
-        return self._name
+    @property
+    def _name(self):
+        """
+        Validador de palavra.
+        :return: NameCheck instance
+        """
+        return self._name_
