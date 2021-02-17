@@ -11,6 +11,7 @@ class ServiceBanco(IServiceBanco):
     """
 
     def __init__(self):
+        """Novo service de banco."""
         self._ban_check = BancoCheck()
 
     # criar conta bancaria
@@ -22,8 +23,10 @@ class ServiceBanco(IServiceBanco):
         :return: bool
         """
         if not Instan.get_instance(banco, Banco):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not banco.fk > 0:
+            SingMessage.message().message = 'Error: ID Usuario Inválido'
             return False
         return False if not \
             self._check_b.validar_banco(banco) else True
@@ -37,10 +40,13 @@ class ServiceBanco(IServiceBanco):
         :return: bool
         """
         if not Instan.get_instance(banco, Banco):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         if not banco.id > 0:
+            SingMessage.message().message = 'Error: ID Banco Inválido.'
             return False
         elif not banco.fk > 0:
+            SingMessage.message().message = 'Error: ID Usuário Inválido.'
             return False
         return False if not \
             self._check_b.validar_banco(banco) else True
@@ -54,6 +60,7 @@ class ServiceBanco(IServiceBanco):
         :return: bool
         """
         if not banco.id > 0 or not banco.fk > 0:
+            SingMessage.message().message = 'Error: Chaves Inválidas.'
             return False
         else:
             return True
@@ -69,6 +76,7 @@ class ServiceBanco(IServiceBanco):
         :return: int
         """
         if not kwargs or kwargs.__len__() < 1:
+            SingMessage.message().message = 'Error: Pesquisa Inválida.'
             return 0
         else:
             return 1
