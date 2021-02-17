@@ -1,3 +1,4 @@
+from com.bcargere.core.singleton.sing_message import SingMessage
 from tools.instance_check.instance import Instan
 from tools.variacao_check.variacao_check import VariacaoCheck
 from com.bcargere.variacao.model.variacao import Variacao
@@ -52,6 +53,7 @@ class ServiceVariacao(IServiceVariacao):
         :return: int
         """
         if not kwargs or kwargs.__len__() < 1:
+            SingMessage.message().message = 'Error: Parametro de Pesquisa Inválido.'
             return 0
         else:
             return 1
@@ -65,8 +67,10 @@ class ServiceVariacao(IServiceVariacao):
         :return: bool
         """
         if not Instan.get_instance(variacao, Variacao):
+            SingMessage.message().message = 'Erro: Inatancia Inválida.'
             return False
         elif not variacao.id > 0:
+            SingMessage.message().message = 'Erro: ID Inválido.'
             return False
         else:
             return True

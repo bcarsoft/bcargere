@@ -1,3 +1,4 @@
+from com.bcargere.core.singleton.sing_message import SingMessage
 from tools.instance_check.instance import Instan
 from com.bcargere.variacao.model.variacao import Variacao
 
@@ -22,12 +23,16 @@ class VariacaoCheck:
         :return: bool
         """
         if Instan.get_instance(variacao, Variacao):
+            SingMessage.message().message = 'Erro: Inatancia Inválida.'
             return False
         elif variacao.fk < 1:
+            SingMessage.message().message = 'Erro: ID Conta Bancária Inválido'
             return False
         elif variacao.numero < 1:
+            SingMessage.message().message = 'Erro: Número da Variação Inválido'
             return False
         elif variacao.dinheiro < 0 and not atualiza:
+            SingMessage.message().message = 'Erro: Valor Monetário Inválido'
             return False
         else:
             return True
