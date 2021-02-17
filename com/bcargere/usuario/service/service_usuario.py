@@ -47,6 +47,7 @@ class ServiceUsuario(IServiceUsuario):
         if not self._get_done_create_update(user):
             return False
         elif user.id < 1:
+            SingMessage.message().message = 'Error: ID Inválido.'
             return False
         else:
             return True
@@ -60,8 +61,10 @@ class ServiceUsuario(IServiceUsuario):
         :return: bool
         """
         if not Instan.get_instance(user, Usuario):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not user.id > 0:
+            SingMessage.message().message = 'Error: ID Inválido.'
             return False
         else:
             return True
@@ -77,6 +80,7 @@ class ServiceUsuario(IServiceUsuario):
         :return: int
         """
         if not kwargs or kwargs.__len__() < 1:
+            SingMessage.message().message = 'Error: Parametro de Pesquisa Inválido.'
             return 0
         else:
             return 1

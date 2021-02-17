@@ -15,6 +15,7 @@ class ServiceTransacoes(IServiceTransacoes):
     """
 
     def __init__(self):
+        """Novo service de transações"""
         self._ban_check = BancoCheck()
         self._name_check = NameCheck()
         self._data_check = DataCheck()
@@ -30,14 +31,19 @@ class ServiceTransacoes(IServiceTransacoes):
         :return: bool
         """
         if not Instan.get_instance(transacao, Transacoes):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not self._check_b.validar_banco(transacao.banco_1):
+            SingMessage.message().message = 'Error: Banco Inválido'
             return False
         elif not self._check_b.validar_banco(transacao.banco_2):
+            SingMessage.message().message = 'Error: Banco Inválido.'
             return False
         elif not self._check_n.validar_palavra(transacao.descricao):
+            SingMessage.message().message = 'Error: Descrição Inválida.'
             return False
         elif not self._check_d.is_data_valida(transacao.data):
+            SingMessage.message().message = 'Error: Data Inválida.'
             return False
         transacao.dinheiro = Decimal(
             self._check_m.str_converter_money(
@@ -46,7 +52,9 @@ class ServiceTransacoes(IServiceTransacoes):
                 )
             )
         )
-        return False if not transacao.get_dinheiro() else True
+        if not transacao.dinheiro:
+            SingMessage.message().message = 'Error: Valor Monetário Inválido.'
+        return False if not transacao.dinheiro else True
 
     # delete part
 
@@ -58,8 +66,10 @@ class ServiceTransacoes(IServiceTransacoes):
         :return: bool
         """
         if not Instan.get_instance(transacao, Transacoes):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not transacao.id > 0 or not transacao.fk > 0:
+            SingMessage.message().message = 'Error: Chaves Inválidas.'
             return False
         else:
             return True
@@ -75,6 +85,7 @@ class ServiceTransacoes(IServiceTransacoes):
         :return: int
         """
         if not kwargs or kwargs.__len__() < 1:
+            SingMessage.message().message = 'Error: Parametro de Pesquisa Inválido.'
             return 0
         else:
             return 1
