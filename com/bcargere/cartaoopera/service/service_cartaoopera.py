@@ -1,6 +1,7 @@
 from decimal import Decimal
 from com.bcargere.cartao.model.cartao import Cartao
 from com.bcargere.cartaoopera.model.cartaoopera import CartaoOpera
+from com.bcargere.core.singleton.sing_message import SingMessage
 from tools.cartao_check.cartao_check import CartaoCheck
 from tools.data_check.data_check import DataCheck
 from tools.instance_check.instance import Instan
@@ -17,6 +18,7 @@ class ServiceCartaoOpera(IServiceCartaoOpera):
     """
 
     def __init__(self):
+        """Novo service cartao opera."""
         self._name_check = NameCheck()
         self._data_check = DataCheck()
         self._money_check = MoneyCheck()
@@ -31,12 +33,16 @@ class ServiceCartaoOpera(IServiceCartaoOpera):
         :return: bool
         """
         if not Instan.get_instance(cartaoopera, CartaoOpera):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not self._check_n.validar_palavra(cartaoopera.nome):
+            SingMessage.message().message = 'Error: Nome Inválido.'
             return False
         elif not self._check_n.validar_palavra(cartaoopera.descricao):
+            SingMessage.message().message = 'Error: Descrição Inválido.'
             return False
         elif not self._check_d.is_data_valida(cartaoopera.data):
+            SingMessage.message().message = 'Error: Data Inválida.'
             return False
         cartaoopera.valor = Decimal(
             self._check_m.str_converter_money(
@@ -44,11 +50,14 @@ class ServiceCartaoOpera(IServiceCartaoOpera):
             )
         )
         if not cartaoopera.valor:
+            SingMessage.message().message = 'Erro: Valor Monetário Inválido.'
             return False
         elif not self._check_cartao(cartaoopera.cartao):
+            SingMessage.message().message = 'Erro: Cartão Inválido.'
             return False
         elif self._check_m.decimal_greater(
                 dec_1=cartaoopera.valor, dec_2=self._limite_atual()):
+            SingMessage.message().message = 'Erro: Entrada Monetária Inválido.'
             return False
         else:
             return True
@@ -62,8 +71,10 @@ class ServiceCartaoOpera(IServiceCartaoOpera):
         :return: bool
         """
         if not Instan.get_instance(cartaoopera, CartaoOpera):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not cartaoopera.id > 0 or not cartaoopera.fk > 0:
+            SingMessage.message().message = 'Error: Chaves Inválidas.'
             return False
         else:
             return True
@@ -79,6 +90,7 @@ class ServiceCartaoOpera(IServiceCartaoOpera):
         :return: int
         """
         if not kwargs or kwargs.__len__() < 1:
+            SingMessage.message().message = 'Error: Pesquisa Inválida.'
             return 0
         else:
             return 1
@@ -92,24 +104,34 @@ class ServiceCartaoOpera(IServiceCartaoOpera):
         :return: bool
         """
         if not Instan.get_instance(cartao, Cartao):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not self._check_c.bandeira_checker(cartao.bandeira):
+            SingMessage.message().message = 'Error: Bandeira Inválida.'
             return False
         elif not self._check_c.tipo_check(cartao.tipo):
+            SingMessage.message().message = 'Error: Tipo Inválido.'
             return False
         elif not self._check_c.nome_checker(cartao.nome_cartao):
+            SingMessage.message().message = 'Error: Nome Inválido.'
             return False
         elif not self._check_c.str_to_number_cartao(cartao.numero):
+            SingMessage.message().message = 'Error: Númnero Inválido.'
             return False
         elif not self._check_c.data_checker(cartao.data_venc):
+            SingMessage.message().message = 'Error: Data de Vencimento Inválida.'
             return False
         elif not self._check_c.verifica_monetario(cartao.limite):
+            SingMessage.message().message = 'Error: Limite Inválido.'
             return False
         elif not self._check_c.verifica_monetario(cartao.excedente):
+            SingMessage.message().message = 'Error: Excedente Inválido.'
             return False
         elif not self._check_c.verifica_monetario(cartao.fatura):
+            SingMessage.message().message = 'Error: Fatura Inválida.'
             return False
         elif not self._check_c.code_checker(cartao.codigo):
+            SingMessage.message().message = 'Error: Código Inválido.'
             return False
         else:
             cartao.numero = self._check_c.str_to_number_cartao(cartao.numero)
