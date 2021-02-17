@@ -90,20 +90,28 @@ class ServiceUsuario(IServiceUsuario):
         :return: bool
         """
         if not Instan.get_instance(user, Usuario):
+            SingMessage.message().message = 'Erro: Instancia Inválida.'
             return False
         elif not self._check_n.validar_palavra(user.nome):
+            SingMessage.message().message = 'Erro: Nome Inválido.'
             return False
         elif not self._check_d.is_data_valida(user.data_nasc):
+            SingMessage.message().message = 'Erro: Data de Nascimento Inválida.'
             return False
         elif not self._check_g.gender_valid(user.genero):
+            SingMessage.message().message = 'Erro: Sexo Inválido.'
             return False
         elif not self._check_e.email_is_valid(user.email):
+            SingMessage.message().message = 'Erro: E-Mail Inválido.'
             return False
         elif not self._check_u.validar_nome_usuario(user.usuario):
+            SingMessage.message().message = 'Erro: Nome de Usuário Inválido.'
             return False
         elif not self._check_p.verifica_senha_app(user.senha):
+            SingMessage.message().message = 'Erro: Senha Inválida.'
             return False
         elif not self._check_m.mobile_valid(user.telefone):
+            SingMessage.message().message = 'Erro: Telefone Celular Inválido.'
             return False
         else:
             return True

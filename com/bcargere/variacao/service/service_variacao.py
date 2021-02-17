@@ -38,6 +38,7 @@ class ServiceVariacao(IServiceVariacao):
         if not self._check_vc.validar_variacao(variacao):
             return False
         elif not variacao.id > 0:
+            SingMessage.message().message = 'Erro: ID Conta Bancaria Inválido.'
             return False
         else:
             return True
@@ -70,7 +71,7 @@ class ServiceVariacao(IServiceVariacao):
             SingMessage.message().message = 'Erro: Inatancia Inválida.'
             return False
         elif not variacao.id > 0:
-            SingMessage.message().message = 'Erro: ID Inválido.'
+            SingMessage.message().message = 'Erro: ID Conta Bancaria Inválido.'
             return False
         else:
             return True
