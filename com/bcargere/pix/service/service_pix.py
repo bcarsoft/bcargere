@@ -16,6 +16,7 @@ class ServicePix(IServicePix):
     """
 
     def __init__(self):
+        """novo service pix."""
         self._name_ = NameCheck()
 
     # create pix
@@ -27,8 +28,10 @@ class ServicePix(IServicePix):
         :return: bool
         """
         if not Instan.get_instance(pix, Pix):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not pix.fk > 0:
+            SingMessage.message().message = 'Error: ID Banco Inválido.'
             return False
         return True if self._create_update_delete(pix) else False
 
@@ -41,10 +44,13 @@ class ServicePix(IServicePix):
         :return: bool
         """
         if not Instan.get_instance(pix, Pix):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not pix.id > 0:
+            SingMessage.message().message = 'Error: ID Pix Inválido.'
             return False
         elif not pix.fk > 0:
+            SingMessage.message().message = 'Error: ID Banco Inválido.'
             return False
         return True if self._create_update_delete(pix) else False
 
@@ -57,6 +63,7 @@ class ServicePix(IServicePix):
         :return: bool
         """
         if not Instan.get_instance(pix, Pix):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         return True if self._create_update_delete(
             pix, delete=True) else False
@@ -70,6 +77,7 @@ class ServicePix(IServicePix):
         :return: int
         """
         if not kwargs or not kwargs.__len__() > 0:
+            SingMessage.message().message = 'Error: Pesquisa Inválida.'
             return 0
         else:
             return 1
@@ -84,10 +92,16 @@ class ServicePix(IServicePix):
         :return: bool
         """
         if delete:
+            if pix.id < 1:
+                SingMessage.message().message = 'Error: ID Pix Inválido.'
             return pix.id > 0
         elif not self._name.validar_palavra(pix.nome):
+            SingMessage.message().message = 'Error: Nome Invalido'
             return False
-        return False if StrControl.is_none_or_empty(pix.chave) else True
+        if StrControl.is_none_or_empty(pix.chave):
+            SingMessage.message().message = 'Error: Chave Pix Inválida.'
+            return False
+        return True
 
     # getter
 
