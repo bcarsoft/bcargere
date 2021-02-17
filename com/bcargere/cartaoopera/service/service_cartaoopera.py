@@ -6,9 +6,10 @@ from tools.data_check.data_check import DataCheck
 from tools.instance_check.instance import Instan
 from tools.money_check.money_check import MoneyCheck
 from tools.name_check.name_check import NameCheck
+from com.bcargere.cartaoopera.service.i_service_cartaoopera import IServiceCartaoOpera
 
 
-class ServiceCartaoOpera:
+class ServiceCartaoOpera(IServiceCartaoOpera):
     """
     Regra de negócio para operação de
     cartão.

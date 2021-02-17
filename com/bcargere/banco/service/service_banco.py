@@ -1,9 +1,10 @@
 from tools.banco_check.banco_check import BancoCheck
 from com.bcargere.banco.model.banco import Banco
 from tools.instance_check.instance import Instan
+from com.bcargere.banco.service.i_service_banco import IServiceBanco
 
 
-class ServiceBanco:
+class ServiceBanco(IServiceBanco):
     """
     Regra de negócio para criação de contas bancárias.
     bcarsoft

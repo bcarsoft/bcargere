@@ -2,9 +2,10 @@ from com.bcargere.pix.model.pix import Pix
 from tools.instance_check.instance import Instan
 from tools.name_check.name_check import NameCheck
 from tools.strs_check.str_control import StrControl
+from com.bcargere.pix.service.i_service_pix import IServicePix
 
 
-class ServicePix:
+class ServicePix(IServicePix):
     """
     Regra de negócio para pix
     - create;

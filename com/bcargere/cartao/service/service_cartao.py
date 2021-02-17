@@ -1,9 +1,10 @@
 from com.bcargere.cartao.model.cartao import Cartao
 from tools.cartao_check.cartao_check import CartaoCheck
 from tools.instance_check.instance import Instan
+from com.bcargere.cartao.service.i_service_cartao import IServiceCartao
 
 
-class ServiceCartao:
+class ServiceCartao(IServiceCartao):
     """
     Regra de negócio para Cartão
     - create, - update, - delete, - select

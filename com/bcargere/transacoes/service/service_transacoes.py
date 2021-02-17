@@ -5,9 +5,10 @@ from tools.data_check.data_check import DataCheck
 from tools.instance_check.instance import Instan
 from tools.money_check.money_check import MoneyCheck
 from tools.name_check.name_check import NameCheck
+from com.bcargere.transacoes.service.i_service_transacoes import IServiceTransacoes
 
 
-class ServiceTransacoes:
+class ServiceTransacoes(IServiceTransacoes):
     """
     Regra de negócio para transacoes.
     bcarsoft

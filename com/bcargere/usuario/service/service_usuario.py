@@ -7,9 +7,10 @@ from tools.mobile_check.mobile_check import MobileCheck
 from tools.name_check.name_check import NameCheck
 from tools.passw_check.passw import Passw
 from tools.user_check.user_check import UserCheck
+from com.bcargere.usuario.service.i_service_usuario import IServiceUsuario
 
 
-class ServiceUsuario:
+class ServiceUsuario(IServiceUsuario):
     """
     Regra de negócio para a criação de usuário,
     deleção, atualização e busca.
@@ -27,7 +28,7 @@ class ServiceUsuario:
 
     # criando novo usuário
 
-    def crete_usuario(self, user):
+    def create_usuario(self, user):
         """
         Metodo para testar novo usuário.
         :param user: object

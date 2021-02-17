@@ -1,13 +1,14 @@
 from decimal import Decimal
 from com.bcargere.potes.model.potes import Potes
 from com.bcargere.potesopera.model.potesopera import PotesOpera
+from com.bcargere.potesopera.service.i_service_potesopera import IServicePotesOpera
 from tools.data_check.data_check import DataCheck
 from tools.instance_check.instance import Instan
 from tools.money_check.money_check import MoneyCheck
 from tools.name_check.name_check import NameCheck
 
 
-class ServicePosteOpera:
+class ServicePosteOpera(IServicePotesOpera):
     """
     Regra de negócio para Potes.
     bcarsoft
@@ -20,7 +21,7 @@ class ServicePosteOpera:
 
     # create part
 
-    def create_potesopera(self, potesopera: PotesOpera):
+    def create_potesopera(self, potesopera):
         """
         Registrar uma nova transação poteária.
         :param potesopera: PotesOpera instance

@@ -1,9 +1,10 @@
 from tools.instance_check.instance import Instan
 from tools.variacao_check.variacao_check import VariacaoCheck
 from com.bcargere.variacao.model.variacao import Variacao
+from com.bcargere.variacao.service.i_service_variacao import IServiceVariacao
 
 
-class ServiceVariacao:
+class ServiceVariacao(IServiceVariacao):
     """
     Regra de negócio para testar as informações sobre variacao.
     bcarsoft

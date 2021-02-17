@@ -1,6 +1,7 @@
 from decimal import Decimal
 from com.bcargere.pix.model.pix import Pix
 from com.bcargere.pixopera.model.pixopera import PixOpera
+from com.bcargere.pixopera.service.i_service_pixopera import IServicePixOpera
 from tools.data_check.data_check import DataCheck
 from tools.money_check.money_check import MoneyCheck
 from tools.name_check.name_check import NameCheck
@@ -8,7 +9,7 @@ from tools.instance_check.instance import Instan
 from tools.strs_check.str_control import StrControl
 
 
-class ServicePixOpera:
+class ServicePixOpera(IServicePixOpera):
     """
     Regra de negócio para operações pix.
     """
@@ -44,7 +45,7 @@ class ServicePixOpera:
 
     # delete part
 
-    def delete_pixoopera(self, pixopera):
+    def delete_pixopera(self, pixopera):
         """
         Esse metodo deleta uma operação de pix.
         :param pixopera: PixOpera instance

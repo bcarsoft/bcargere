@@ -1,11 +1,12 @@
 from decimal import Decimal
 from com.bcargere.potes.model.potes import Potes
+from com.bcargere.potes.service.i_service_potes import IServicePotes
 from tools.instance_check.instance import Instan
 from tools.name_check.name_check import NameCheck
 from tools.money_check.money_check import MoneyCheck
 
 
-class ServicePotes:
+class ServicePotes(IServicePotes):
     """
     Regra de de negócio para registro de potes.
     bcarsoft
