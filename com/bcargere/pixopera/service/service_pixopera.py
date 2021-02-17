@@ -12,9 +12,11 @@ from tools.strs_check.str_control import StrControl
 class ServicePixOpera(IServicePixOpera):
     """
     Regra de negócio para operações pix.
+    bcarsoft
     """
 
     def __init__(self):
+        """novo service pix opera"""
         self._data_check = DataCheck()
         self._money_check = MoneyCheck()
         self._name_check = NameCheck()
@@ -29,10 +31,13 @@ class ServicePixOpera(IServicePixOpera):
         :return: bool
         """
         if not Instan.get_instance(pixopera, PixOpera):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not self._verifica_pix(pixopera.pix_1):
+            SingMessage.message().message = 'Error: Pix Inválido.'
             return False
         elif not self._verifica_pix(pixopera.pix_2):
+            SingMessage.message().message = 'Error: Pix Inválido.'
             return False
         pixopera.dinheiro = Decimal(
             self._check_m.str_converter_money(
@@ -40,7 +45,10 @@ class ServicePixOpera(IServicePixOpera):
             )
         )
         if not pixopera.dinheiro:
+            SingMessage.message().message = 'Error: Valor Monetário Inválido.'
             return False
+        if not self._check_d.is_data_valida(pixopera.data):
+            SingMessage.message().message = 'Error: Data Inválida.'
         return False if not self._check_d.is_data_valida(pixopera.data) else True
 
     # delete part
@@ -52,8 +60,10 @@ class ServicePixOpera(IServicePixOpera):
         :return: bool
         """
         if not Instan.get_instance(pixopera, PixOpera):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not pixopera.id > 0 or not pixopera.fk > 0:
+            SingMessage.message().message = 'Error: Chave de Acesso Inválida.'
             return False
         else:
             return True
@@ -69,6 +79,7 @@ class ServicePixOpera(IServicePixOpera):
         :return: int
         """
         if not kwargs or kwargs.__len__() < 1:
+            SingMessage.message().message = 'Error: Pesquisa Inválida.'
             return 0
         else:
             return 1
@@ -83,10 +94,13 @@ class ServicePixOpera(IServicePixOpera):
         :return: bool
         """
         if not Instan.get_instance(pix, Pix):
+            SingMessage.message().message = 'Error: Instancia Inválida.'
             return False
         elif not self._check_n.validar_palavra(pix.nome):
+            SingMessage.message().message = 'Error: Nome Inválido.'
             return False
         elif StrControl.is_none_or_empty(pix.chave):
+            SingMessage.message().message = 'Error: Chave Pix Inválida.'
             return False
         else:
             return True
